@@ -1,0 +1,23 @@
+{# templates/mesreservation/edit.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier la Réservation{% endblock %}
+
+{% block body %}
+<div class="fr-container">
+    <h1>Modifier la Réservation</h1>
+
+    {# Affichage des erreurs du formulaire si nécessaire #}
+    {{ form_start(form) }}
+
+    {{ form_row(form.dateCreation) }}
+    {{ form_row(form.datefin) }}
+    {{ form_row(form.Terrain) }}
+    <button class="fr-btn" type="submit">Modifier</button>
+
+    {{ form_end(form) }}
+
+    <a class="fr-link" href="{{ path('app_mesreservation') }}">Retour aux réservations</a>
+    </div>
+{% endblock %}
