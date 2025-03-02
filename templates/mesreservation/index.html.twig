@@ -23,47 +23,41 @@
 
                 <table id="table-bordered-md">
                     <caption>  Mes Reservation  </caption>
-                    <thead>
-                    <tr>
-                        <th scope="col"> Date debut </th>
-                        <th scope="col"> Date de fin </th>
-                        <th scope="col">Terrain</th>
-                        <th scope="col"> Edit   </th>
 
-                    </tr>
-                    </thead>
+                    <thead>
+                            <tr>
+                            <th>Date debut</th>
+                            <th>Date de fin</th>
+                            <th>Terrain</th>
+                            <th>Edit</th>
+                            </tr>
+                     </thead>
+
+
                     <tbody>
                     {%  for reservation in  reservation %}
                     <tr id="table-bordered-row-key-1" data-row-key="1">
-
-                        <td>  {{ reservation.dateCreation|date('d/m/Y H:i') }} </td>
+                        <td>{{ reservation.dateCreation|date('d/m/Y H:i') }} </td>
                         <td>  {{ reservation.datefin|date('d/m/Y H:i')}} </td>
                         <td>  {{ reservation.Terrain}}  </td>
-                        <td>
-                            <ul class="fr-btns-group fr-btns-group--equisized">
-
-                            <a  href="{{ path('app_reservation_edit', {'id': reservation.id}) }}"  class="fr-icon-settings-5-fill   fr-btn">  </a>
-
-
-                            <form method="POST" action="{{ path('app_reservation_delete', {'id': reservation.id}) }}">
+                        <td> <ul class="fr-btns-group fr-btns-group--equisized">
+                                <a  href="{{ path('app_reservation_edit', {'id': reservation.id}) }}"  class="fr-icon-settings-5-fill   fr-btn">  </a>
+                                <form method="POST" action="{{ path('app_reservation_delete', {'id': reservation.id}) }}">
                                 <input type="hidden" name="_token" value="{{ csrf_token('delete_reservation'~ reservation.id) }}">
-                                <button type="submit" class="fr-btn fr-alert--error"
+                                <button type="submit" class="fr-btn fr-btn--secondary fr-icon-delete-line"
                                         onclick="return confirm('Êtes-vous sûr de vouloir supprimer cette réservation ?')">Supprimer</button>
-                            </form>
+                                </form>
                             </ul>
-
                         </td>
 
                         {% endfor %}
+
                     </tbody>
-
-
-                </table>
-
-            </div>
-        </div>
-    {% endif %}
-    </div>
-    </div>
+                  </table>
+                </div>
+              </div>
+                        {% endif %}
+           </div>
+         </div>
 
 {% endblock %}

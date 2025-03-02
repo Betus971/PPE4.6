@@ -32,6 +32,16 @@ class MesreservationController extends AbstractController
         ]);
     }
 
+
+    #[Route ('/mesreservation/{id}/show',name: 'app_mesreservation_show', methods: ['GET'])]
+    public function show(Reservation $reservation) :Response
+    {
+        return $this->render('mesreservation/show.html.twig',[
+            'Reservation'=>$reservation,
+        ]);
+
+    }
+
     #[Route('/mesreservation/{id}/delete', name: 'app_reservation_delete', methods: ['POST'])]
     public function deleteReservation(Request $request, Reservation $reservation, EntityManagerInterface $entityManager): Response
     {

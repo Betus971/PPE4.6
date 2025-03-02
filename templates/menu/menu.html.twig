@@ -41,7 +41,7 @@
                                 <li>
                                 {% if app.user %}
                                 <span class="fr-icon-account-circle-fill">{{ app.user.userIdentifier }}</span>
-                                    <a href="{{ path('app_logout') }}"class="fr-btn">Déconnexion</a>
+                                    <a href="{{ path('app_logout') }}" class="fr-btn">Déconnexion</a>
 
                                 {% else %}
                                     <li>
@@ -53,7 +53,7 @@
                                     Se connecter</a>
                                 {% endif %}
                             </li>
-
+                          
 {#                            <li>#}
 {#                                <a class="fr-btn fr-icon-account-line" href="{{ path('app_register') }}">#}
 {#                                    S’enregistrer#}
@@ -103,12 +103,17 @@
 {#                        <a class="fr-nav__link" href="calendar" target="_self"> booking Calendar test</a>#}
 {#                    </li>#}
                     <li class="fr-nav__item">
-                        <a class="fr-nav__link" href="calendrier" target="_self">Calendrier</a>
+                        <a class="fr-nav__link" href="{{ path ('app_reservation_calendrier') }}" target="_self">Calendrier</a>
                     </li>
                    {% if is_granted('ROLE_ADMIN') %}
                    <li class="fr-nav__item">
                         <a class="fr-nav__link" href="admin" target="_self">Admin</a>
+
                     </li>
+                       <li class="fr-nav__item">
+
+                           <a class="fr-nav__link" href="{{ path ('app_statistique') }}" target="_self">Statistique</a>
+                       </li>
                     {% endif %}
                 </ul>
             </nav>

@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello StatistiqueController!{% endblock %}
+
+{% block body %}
+    <div class="fr-container  fr-p-8v">
+        <h1>les Statistique </h1>
+
+     <div class="fr-grid-row fr-grid-row--gutters">
+                 <div class="fr-col-13 fr-col-lg-6 fr-col-lg-4">
+                       <div class="fr-card">
+                               {{ render_chart(chart) }}
+                       </div>
+                 </div>
+
+           <div class="fr-col-12 fr-col-lg-6">
+                   <div class="fr-card">
+                        {{ render_chart(chartTerrain) }}
+                   </div>
+           </div>
+
+
+     </div>
+    </div>
+
+
+{% endblock %}

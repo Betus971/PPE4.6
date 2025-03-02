@@ -3,26 +3,22 @@
 {% block title %}Register{% endblock %}
 
 {% block body %}
-<div class="fr-container">
-     {% for message in app.flashes('error') %}
-            <div class="fr-alert--error">{{ message }}</div>
-        {% endfor %}
-    <h1>Inscription</h1>
+    <div class="fr-container">
+    <h1>Register</h1>
 
     {{ form_errors(registrationForm) }}
 
     {{ form_start(registrationForm) }}
         {{ form_row(registrationForm.username) }}
     {{ form_row(registrationForm.Nom) }}
-    {{ form_row(registrationForm.Prenom) }}
+    {{ form_row(registrationForm.prenom) }}
     {{ form_row(registrationForm.email) }}
         {{ form_row(registrationForm.plainPassword, {
             label: 'Password'
         }) }}
         {{ form_row(registrationForm.agreeTerms) }}
 
+        <button type="submit" class="fr-btn">Register</button>
     {{ form_end(registrationForm) }}
-    <p> Déja inscrit ? <a href="{{  path('app_login')}}" class="fr-link"> Me connecté</a></p>
-
     </div>
 {% endblock %}

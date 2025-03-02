@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+
+{% block  body %}
+
+    <div class="fr-container">
+
+<table class="table">
+    <tbody>
+    <tr>
+        <th>Utilisateur</th>
+        <td>{{ Reservation.user }}</td>
+    </tr>
+    <tr>
+        <th>Date debut </th>
+        <td>{{ Reservation.dateCreation |date('d/m/Y H:i')}}</td>
+    </tr>
+    <tr>
+        <th>Date de fin</th>
+        <td>{{ Reservation.datefin |date('d/m/Y H:i')}} </td>
+    </tr>
+    <tr>
+        <th>Terrain</th>
+        <td>{{ Reservation.terrain }}</td>
+    </tr>
+
+    </tbody>
+
+
+</table>
+    </div>
+{% endblock %}

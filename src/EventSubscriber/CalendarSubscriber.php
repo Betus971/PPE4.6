@@ -44,8 +44,10 @@ class CalendarSubscriber implements EventSubscriberInterface
 
         foreach ($reservations as $reservation) {
             // this create the events with your data (here booking data) to fill calendar
+
             $reservationEvent = new Event(
                 $reservation->getTerrain(),
+
                 $reservation->getDateCreation(),
                 $reservation->getDatefin() // If the end date is null or not defined, a all day event is created.
             );
@@ -61,7 +63,7 @@ class CalendarSubscriber implements EventSubscriberInterface
             ]);
             $reservationEvent->addOption(
                 'url',
-                $this->router->generate('app_mesreservation', [
+                $this->router->generate('app_mesreservation_show', [
                     'id' => $reservation->getId(),
                 ])
             );

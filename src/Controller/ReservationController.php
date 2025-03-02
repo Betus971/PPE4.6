@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Reservation;
 use App\Form\ReservationType;
+use App\Repository\ReservationRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\FormError;
@@ -21,7 +22,7 @@ class ReservationController extends AbstractController
     }
     #[Route('/reservation', name: 'app_reservation')]
     #[isGranted('ROLE_USER')]
-    public function create(Request $request,EntityManagerInterface $entityManager): Response
+    public function create(Request $request, EntityManagerInterface $entityManager, ReservationRepository $ReservationRepository): Response
     {
 
         $user = $this->getUser(); //recuper le user connecter
@@ -41,21 +42,22 @@ class ReservationController extends AbstractController
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
 
-        }
+            $terrain = $Reservation->getTerrain();
+
+             if ($terrain && $terrain ->getDisponible()) {
+                $Reservation->setTerrain($terrain);
+                $entityManager->persist($Reservation);
+                $entityManager->flush();
+
+                $this->addFlash('success', 'Votre réservation a bien été enregistrée.');
+
+                return $this->redirectToRoute('app_mesreservation');
+            } else {
+
+                  $this->addFlash('error','le terrain n\'est pas disponible.');
+            }
 
 
-        $data = $form->getData();
-
-        if ($data->getDatefin() <= $data->getDateCreation()) {
-            $form->get('datefin')->addError(new FormError( message: 'Date de fin invalide'));
-
-        } else {
-
-            $entityManager->persist($Reservation);
-            $entityManager->flush();
-
-            $this->addFlash('success', 'Votre réservation a bien été enregistrée.');
-            return $this->redirectToRoute('app_mesreservation');
 
         }
 

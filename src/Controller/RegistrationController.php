@@ -15,11 +15,6 @@ use Symfony\Component\Routing\Attribute\Route;
 
 class RegistrationController extends AbstractController
 {
-    #[Route(path: '/calendar', name: 'app_booking_calendar')]
-    public function calendar(): Response
-    {
-        return $this->render('Calendrier/calendar.html.twig');
-    }
     #[Route('/register', name: 'app_register')]
     public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, Security $security, EntityManagerInterface $entityManager): Response
     {
@@ -30,9 +25,6 @@ class RegistrationController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             /** @var string $plainPassword */
             $plainPassword = $form->get('plainPassword')->getData();
-            foreach ($form ->getErrors(true)as $error) {
-                $this->addFlash('erreur',$error->getMessage());
-            }
 
             // encode the plain password
             $user->setPassword($userPasswordHasher->hashPassword($user, $plainPassword));
@@ -46,7 +38,7 @@ class RegistrationController extends AbstractController
         }
 
         return $this->render('registration/register.html.twig', [
-            'registrationForm' => $form -> createView(),
+            'registrationForm' => $form,
         ]);
     }
 }
