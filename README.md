@@ -1,8 +1,10 @@
 Prerequisites
 PHP 8.1 or greater
 MySQL 5.5 or greater
-Web server (Apache, IIS)
-
+vous pouvez utiliez wamp et ou xamp pour comme server vous gagnerez du temps ,
+telecharger symfony CLI
+https://symfony.com/download
+deplacer le ficher exe dans votre dossier wamp/bin/php8.1/collez le fichier exe dans le repertoir
 
 symfony check:requirements
 
