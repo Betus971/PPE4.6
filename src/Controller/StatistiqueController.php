@@ -66,10 +66,12 @@ final class StatistiqueController extends AbstractController
                 ],
             ],
         ]);
+        $nbReservations = $reservationRepository->getNbReservations();
 
         return $this->render('statistique/index.html.twig', [
             'chart' => $chart,
             'chartTerrain' => $chartTerrain,
+            'nbReservations' => $nbReservations,
         ]);
     }
 }

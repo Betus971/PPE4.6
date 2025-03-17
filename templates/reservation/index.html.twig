@@ -4,32 +4,20 @@
 
 {% block body %}
 
-{#    {% for message in app.flashes('error') %}#}
-{#        <div class="fr-alert fr-alert--error">{{ message }}</div>#}
-{#    {% endfor %}#}
-
-    {% for message in app.flashes('error2') %}
-        <div class="fr-alert fr-alert--error">{{ message }}</div>
-    {% endfor %}
 
 
 
-    <div class="fr-container fr-p-8v">
+    <div class="fr-container fr-mb-8w">
+    <div class="fr-grid-row fr-grid-row--center fr-grid-row--gutter">
+        <div class="fr-col fr-col-lg-8">
+
+
 
         <h1> Reservation du terrain </h1>
         {{ form_start(ReservationType) }}
-
-{#        {{ form_errors(ReservationType)}}#}
-
-
-{#        {{ form_row(ReservationType.dateCreation) }}#}
-{#        {{ form_row(ReservationType.datefin) }}#}
-
-{#        {{ form_row(ReservationType.Capacite) }}#}
-
-
-
-        {{ form_end(ReservationType) }}
+            {{ form_end(ReservationType) }}
+    </div>
+    </div>
     </div>
 
 {% endblock %}

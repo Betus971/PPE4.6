@@ -164,6 +164,8 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/tattali/calendar-bundle" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/twig/html-extra" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/ux-chartjs" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/knplabs/knp-components" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/knplabs/knp-paginator-bundle" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

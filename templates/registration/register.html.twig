@@ -3,8 +3,10 @@
 {% block title %}Register{% endblock %}
 
 {% block body %}
-    <div class="fr-container">
-    <h1>Register</h1>
+<div class="fr-container fr-mb-8w">
+    <div class="fr-grid-row fr-grid-row--center fr-grid-row--gutter">
+        <div class="fr-col fr-col-lg-8">
+    <h1>Inscription</h1>
 
     {{ form_errors(registrationForm) }}
 
@@ -18,7 +20,11 @@
         }) }}
         {{ form_row(registrationForm.agreeTerms) }}
 
-        <button type="submit" class="fr-btn">Register</button>
+          <div class="fr-input-group fr-my-4w">
+        <button type="submit" class="fr-btn">Enregistrer</button>
+          </div>
     {{ form_end(registrationForm) }}
     </div>
+    </div>
+</div>
 {% endblock %}
