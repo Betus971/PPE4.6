@@ -5,7 +5,10 @@
 {% block title %}Modifier la Réservation{% endblock %}
 
 {% block body %}
-<div class="fr-container">
+    <div class="fr-container fr-mb-9w">
+    <div class="fr-grid-row fr-grid-row--center fr-grid-row--gutter">
+    <div class="fr-col fr-col-lg-8">
+
     <h1>Modifier la Réservation</h1>
 
     {# Affichage des erreurs du formulaire si nécessaire #}
@@ -14,10 +17,14 @@
     {{ form_row(form.dateCreation) }}
     {{ form_row(form.datefin) }}
     {{ form_row(form.Terrain) }}
-    <button class="fr-btn" type="submit">Modifier</button>
-
+    <div class="fr-input-group fr-my-4w">
+    <button class="fr-btn btn" type="submit">Modifier</button>
+       <button class="fr-btn btn"> <a href="{{ path('app_mesreservation') }}"> Retour aux réservations</a> </button>
+    </div>
     {{ form_end(form) }}
 
-    <a class="fr-link" href="{{ path('app_mesreservation') }}">Retour aux réservations</a>
+
+    </div>
+    </div>
     </div>
 {% endblock %}

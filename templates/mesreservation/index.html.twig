@@ -3,12 +3,15 @@
 {% block title %}Hello MesreservationController!{% endblock %}
 
 {% block body %}
+
+    <div class="fr-container fr-p-10v">
+
     {% for message in app.flashes('success') %}
         <div class="fr-alert fr-alert--success">
             <span><strong class="font-semibold">Succès:</strong> {{ message }}</span>
         </div>
     {% endfor %}
-    <div class="fr-container fr-p-10v">
+
     {% if reservation is empty %}
         <p>Vous n'avez aucune réservation pour le moment.</p>
     {% else %}
@@ -40,7 +43,7 @@
                         <td>{{ reservation.dateCreation|date('d/m/Y H:i') }} </td>
                         <td>  {{ reservation.datefin|date('d/m/Y H:i')}} </td>
                         <td>  {{ reservation.Terrain}}  </td>
-                        <td> <ul class="fr-btns-group fr-btns-group--equisized">
+                        <td> <ul class="fr-btns-group fr-btns-group--inline-sm">
                                 <a  href="{{ path('app_reservation_edit', {'id': reservation.id}) }}"  class="fr-icon-settings-5-fill   fr-btn">  </a>
                                 <form method="POST" action="{{ path('app_reservation_delete', {'id': reservation.id}) }}">
                                 <input type="hidden" name="_token" value="{{ csrf_token('delete_reservation'~ reservation.id) }}">

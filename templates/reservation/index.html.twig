@@ -1,19 +1,23 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello ReservationController!{% endblock %}
+{% block title %}Reservation{% endblock %}
 
 {% block body %}
 
+    {% for message in app.flashes('error') %}
+        <div class="fr-alert fr-alert--error">
+            <span><strong class="font-semibold">Error:</strong> {{ message }}</span>
+        </div>
+    {% endfor %}
 
 
-
-    <div class="fr-container fr-mb-8w">
+    <div class="fr-container fr-mt-4w">
     <div class="fr-grid-row fr-grid-row--center fr-grid-row--gutter">
         <div class="fr-col fr-col-lg-8">
 
 
 
-        <h1> Reservation du terrain </h1>
+        <h1> Réservation du terrain </h1>
         {{ form_start(ReservationType) }}
             {{ form_end(ReservationType) }}
     </div>

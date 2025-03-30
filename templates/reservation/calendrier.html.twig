@@ -20,7 +20,6 @@
 
             const calendar = new FullCalendar.Calendar(calendarEl, {
                 initialView: 'dayGridMonth',
-                locale: 'fr',
                 editable: true,
                 eventSources: [
                     {
@@ -39,8 +38,13 @@
                     center: 'title',
                     right: 'dayGridMonth,timeGridWeek,timeGridDay',
                 },
-                timeZone: 'French/Paris',
+                timeZone: 'Europe/Paris',
                 locale: 'fr',
+                dateClick: function(info) {
+                    let selectedDate = info.dateStr; // Récupère la date cliquée (format YYYY-MM-DD)
+                    let url = "{{ path('app_reservation') }}?date=" + selectedDate;
+                    window.location.href = url; // Redirige vers la page de création avec la date
+                }
             });
 
             calendar.render();

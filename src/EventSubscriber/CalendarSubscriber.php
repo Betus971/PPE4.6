@@ -6,7 +6,7 @@ namespace App\EventSubscriber;
 use App\Repository\ReservationRepository;
 use CalendarBundle\Entity\Event;
 use CalendarBundle\Event\SetDataEvent;
-use App\Repository\BookingRepository;
+
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
@@ -14,7 +14,7 @@ class CalendarSubscriber implements EventSubscriberInterface
 {
     public function __construct(
           private readonly ReservationRepository $reservationRepository,
-//        private readonly BookingRepository $bookingRepository,
+
         private readonly UrlGeneratorInterface $router
     ) {}
 
@@ -61,12 +61,14 @@ class CalendarSubscriber implements EventSubscriberInterface
                 'backgroundColor' => 'rgb(0, 191, 255)',
                 'borderColor' => 'red',
             ]);
+
             $reservationEvent->addOption(
                 'url',
                 $this->router->generate('app_mesreservation_show', [
                     'id' => $reservation->getId(),
                 ])
             );
+
 
             // finally, add the event to the CalendarEvent to fill the calendar
             $setDataEvent->addEvent($reservationEvent);

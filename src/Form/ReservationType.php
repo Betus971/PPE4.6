@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\Reservation;
 use App\Entity\Terrain;
 use App\Entity\User;
+use Doctrine\ORM\EntityRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
@@ -13,8 +14,10 @@ use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\Callback;
 use Symfony\Component\Validator\Constraints\GreaterThanOrEqual;
 use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Validator\Context\ExecutionContextInterface;
 
 class ReservationType extends AbstractType
 {
@@ -30,7 +33,7 @@ class ReservationType extends AbstractType
                 'constraints' => [
                     new NotBlank(),
                     new GreaterThanOrEqual ([
-                        'value' => new \DateTime(),
+                        'value' => new \DateTime('today'),
                         'message' => 'La date de création ne peut pas être antérieure à aujourd\'hui.',
                     ] ),
 
@@ -42,15 +45,11 @@ class ReservationType extends AbstractType
                 'required' => true,
                 'constraints' => [
                     new NotBlank(),
-                    new GreaterThanOrEqual([
-                        'value' => new \DateTime(),
-                        'message' => 'La date de fin doit être postérieure à la date de réservation.',
-                    ]),
+                    new Callback([$this, 'validateDates']),
                 ],
             ])
             ->add('Terrain', EntityType::class, [
                 'class' => Terrain::class,
-//                'class'=> Categorie::class,
                 'choice_label' => 'NomTerrain',
 
             ])
@@ -58,7 +57,7 @@ class ReservationType extends AbstractType
 
 
             ->add('Capacite', IntegerType::class, [
-                'label' => 'Participant',
+                'label' => 'Nombre de Participant',
                 'mapped' => false,
                 'required' => true,
                 'attr' => [
@@ -76,5 +75,15 @@ class ReservationType extends AbstractType
             'is_user_connected' => false,
         ]);
         $resolver->setRequired('is_user_connected');
+    }
+    public function validateDates($value, ExecutionContextInterface $context): void
+    {
+        $form = $context->getRoot();
+        $dateCreation = $form->get('dateCreation')->getData();
+
+        if ($dateCreation && $value && $value < $dateCreation) {
+            $context->buildViolation('La date de fin doit être postérieure à la date de réservation.')
+                ->addViolation();
+        }
     }
 }

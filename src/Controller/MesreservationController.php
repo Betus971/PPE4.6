@@ -92,7 +92,7 @@ class MesreservationController extends AbstractController
         }
 
         return $this->render('mesreservation/edit.html.twig', [
-            'form' => $form->createView(),
+            'form' => $form,
             'reservation' => $reservation
         ]);
 

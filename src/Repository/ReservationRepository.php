@@ -42,25 +42,16 @@ class ReservationRepository extends ServiceEntityRepository
     //        ;
     //    }
 
+    //        public function findBySomthing():Int
+    //       {
+    //            return $this->createQueryBuilder('r')
+    //                   ->select('count(r.id)')
+    //                   ->getQuery()
+    //                    ->getSingleScalarResult()
+    //             ;
+    //
+    //        }
 
-        public function getNbReservations():Int
-        { return $this->createQueryBuilder('r')
-            ->select('count(r.id)')
-            ->getQuery()
-            ->getSingleScalarResult();
 
-        }
-
-    public  function getTop3Reservation() :array
-    {
-        return $this->createQueryBuilder('r')
-        ->select('t.nom as nomTerrain, COUNT(r.id) as nb')
-        ->join('r.terrain', 't')
-        ->groupBy('t.id')
-        ->orderBy('nb', 'DESC')
-        ->getQuery()
-        ->getResult();
-
-    }
 
 }

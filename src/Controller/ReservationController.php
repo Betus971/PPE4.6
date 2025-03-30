@@ -31,7 +31,10 @@ class ReservationController extends AbstractController
 
         //associer l utilisateur connecté a la reservation
         $Reservation->setUser($user);
-
+        // Vérifier si une date est passée en paramètre et la définir
+        if ($request->query->get('date')) {
+            $Reservation->setDateCreation(new \DateTime($request->query->get('date')));
+        }
         // Créer le formulaire avec l'option is_user_connected
        $form = $this->createForm(ReservationType::class, $Reservation, [
 
@@ -52,10 +55,12 @@ class ReservationController extends AbstractController
                 $this->addFlash('success', 'Votre réservation a bien été enregistrée.');
 
                 return $this->redirectToRoute('app_mesreservation');
+
             } else {
 
                   $this->addFlash('error','le terrain n\'est pas disponible.');
-            }
+                   return $this->redirectToRoute('app_reservation');
+             }
 
 
 
@@ -64,7 +69,7 @@ class ReservationController extends AbstractController
 
 
           return $this->render('reservation/index.html.twig', [
-            'ReservationType' => $form->createView(),
+            'ReservationType' => $form,
         ]);
     }
 }

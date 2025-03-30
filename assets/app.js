@@ -6,13 +6,10 @@ import './bootstrap.js';
  * which should already be in your base.html.twig.
  */
 import './styles/app.css';
-
-import './styles/dist/dsfr.css';
+import './styles/dist/utility/utility.min.css';
+import './styles/dist/dsfr.min.css';
 import './styles/dist/dsfr.module.js';
-import './styles/dist/utility/utility.css';
-import './styles/dist/utility/icons/icons.css';
-
-
+import './styles/dist/dsfr/dsfr.module.js';
 
 
 
